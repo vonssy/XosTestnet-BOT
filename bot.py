@@ -1279,7 +1279,7 @@ class XOS:
                         self.log(
                             f"{Fore.MAGENTA + Style.BRIGHT}   >{Style.RESET_ALL}"
                             f"{Fore.BLUE + Style.BRIGHT} Message : {Style.RESET_ALL}"
-                            f"{Fore.GREEN + Style.BRIGHT} Solving Cf Turnstile Success {Style.RESET_ALL}"
+                            f"{Fore.GREEN + Style.BRIGHT}Solving Cf Turnstile Success{Style.RESET_ALL}"
                         )
                         
                         claim = await self.send_token(address, turnstile_token, proxy)
