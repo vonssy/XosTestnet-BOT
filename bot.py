@@ -1300,7 +1300,7 @@ class XOS:
                         
                     else:
                         next_claim_time = eligibility.get("nextClaimTime")
-                        next_claim_wib = datetime.strptime(next_claim_time, "%Y-%m-%dT%H:%M:%S.%fZ") + timedelta(hours=7)
+                        next_claim_wib = datetime.strptime(next_claim_time, "%Y-%m-%dT%H:%M:%S.%fZ")
                         formatted_time = next_claim_wib.astimezone(wib).strftime('%x %X %Z')
 
                         self.log(
