@@ -38,7 +38,7 @@ class XOS:
             "User-Agent": FakeUserAgent().random
         }
         self.BASE_API = "https://api.x.ink/v1"
-        self.FAUCET_API = "https://faucet.x.ink/api/"
+        self.FAUCET_API = "https://faucet.x.ink/api"
         self.PAGE_URL = "https://faucet.x.ink/"
         self.SITE_KEY = "0x4AAAAAABciOCyUzm5u0xOv"
         self.REF_CODE = "1V7NKQ" # U can change it with yours.
