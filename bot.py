@@ -1410,15 +1410,34 @@ class XOS:
 
             swap_amount = round(random.uniform(self.min_swap_amount, self.max_swap_amount), 6)
 
+            xos_balance = await self.get_token_balance(address, "XOS", use_proxy)
             balance = await self.get_token_balance(address, from_contract_address, use_proxy)
+            tx_fees = 0.009
+
+            self.log(f"{Fore.CYAN+Style.BRIGHT}     Balance :{Style.RESET_ALL}")
             self.log(
-                f"{Fore.CYAN+Style.BRIGHT}     Balance :{Style.RESET_ALL}"
+                f"{Fore.BLUE+Style.BRIGHT}       ● {Style.RESET_ALL}"
+                f"{Fore.WHITE+Style.BRIGHT} {xos_balance} XOS {Style.RESET_ALL}"
+            )
+            self.log(
+                f"{Fore.BLUE+Style.BRIGHT}       ● {Style.RESET_ALL}"
                 f"{Fore.WHITE+Style.BRIGHT} {balance} {from_token} {Style.RESET_ALL}"
             )
             self.log(
                 f"{Fore.CYAN+Style.BRIGHT}     Amount  :{Style.RESET_ALL}"
                 f"{Fore.WHITE+Style.BRIGHT} {swap_amount} {from_token} {Style.RESET_ALL}"
             )
+            self.log(
+                f"{Fore.CYAN+Style.BRIGHT}     Tx Fees :{Style.RESET_ALL}"
+                f"{Fore.WHITE+Style.BRIGHT} {tx_fees} XOS {Style.RESET_ALL}"
+            )
+
+            if not xos_balance or xos_balance <= tx_fees:
+                self.log(
+                    f"{Fore.CYAN+Style.BRIGHT}     Status  :{Style.RESET_ALL}"
+                    f"{Fore.YELLOW+Style.BRIGHT} Insufficient XOS Token Balance {Style.RESET_ALL}"
+                )
+                return
 
             if not balance or balance <= swap_amount:
                 self.log(
@@ -1508,7 +1527,7 @@ class XOS:
 
                 self.log(f"{Fore.CYAN + Style.BRIGHT}={Style.RESET_ALL}"*72)
                 
-                delay = 12 * 60 * 60
+                delay = 24 * 60 * 60
                 while delay > 0:
                     formatted_time = self.format_seconds(delay)
                     print(
